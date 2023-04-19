@@ -12,7 +12,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
-  background-color: #464547;
+  background-color: #fff;
 }
 
 /* layout */
@@ -94,6 +94,35 @@ body {
   background-color: #eeeeee;
 }
 
+.community {
+  background-color: #fff;
+}
+
+.community__container {
+  max-width: 900px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.community__btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  justify-self: flex-end;
+  padding: 10px 15px;
+  color: #464547;
+  font-size: 20px;
+  font-family: inherit;
+}
+
 .card {
   display: flex;
   justify-content: center;
@@ -138,7 +167,9 @@ body {
 }
 
 .wrapper {
+  margin: 0 auto;
   margin-bottom: 2em;
+  max-width: 900px;
 }
 
 .footer {
