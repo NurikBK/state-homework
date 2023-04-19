@@ -59,7 +59,7 @@ const Community = () => {
               <small className="uppercase">
                 {item.firstName} {item.lastName}
               </small>
-              <p>${item.position}</p>
+              <p>{item.position}</p>
             </div>
           ))}
         </div>

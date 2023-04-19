@@ -3,7 +3,7 @@ import SmallLogo from '../assets/small-logo.webp';
 
 const Footer = () => {
   return (
-    <footer className="footer " id="footer">
+    <footer className="footer" id="footer">
       <div className="footer-logo">
         <img src={SmallLogo} alt="logo" />
         <p>Project</p>
