@@ -26,7 +26,7 @@ export async function subscribe(email) {
 }
 
 export async function unsubscribe(email) {
-  const data = await postData(`${url}/subscribe`);
+  const data = await postData(`${url}/unsubscribe`);
 
   return data;
 }
