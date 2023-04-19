@@ -15,12 +15,12 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
 
     if (!isSubcribed) {
       await subscribe(email);
-      setIsDisabled(!isDisabled);
       setIsSubcribed(!isSubcribed);
+      setIsDisabled(!isDisabled);
     } else {
       await unsubscribe(email);
-      setIsDisabled(!isDisabled);
       setIsSubcribed(!isSubcribed);
+      setIsDisabled(!isDisabled);
     }
   };
 
