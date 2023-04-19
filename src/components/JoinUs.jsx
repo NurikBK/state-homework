@@ -30,7 +30,7 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
       <p className="subheading">
         Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="wrapper">
         {!isSubcribed && (
           <input
             // change type
