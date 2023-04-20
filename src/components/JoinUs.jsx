@@ -37,8 +37,7 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
       <form onSubmit={handleSubmit}>
         {!isSubcribed && (
           <input
-            // change type
-            type="text"
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
