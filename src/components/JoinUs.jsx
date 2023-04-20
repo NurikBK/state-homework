@@ -22,9 +22,13 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
         alert(error);
       }
     } else {
-      await unsubscribe(email);
-      setIsSubcribed((prevState) => !prevState);
-      setIsDisabled((prevState) => !prevState);
+      try {
+        await unsubscribe(email);
+        setIsSubcribed((prevState) => !prevState);
+        setIsDisabled((prevState) => !prevState);
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
