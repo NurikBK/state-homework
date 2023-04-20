@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleIsHidden } from '../features/community/communitySlice';
 
 const Community = () => {
   const [communityData, setCommunityData] = useState([]);
-  const [isHidden, setIsHidden] = useState(false);
+  const dispatch = useDispatch();
+  const isHidden = useSelector((state) => state.community.isHidden);
 
   useEffect(() => {
     const url = 'http://localhost:3000/community';
-    getCommunityData(url);
+    try {
+      getCommunityData(url);
+    } catch (error) {
+      alert(error);
+    }
   }, []);
 
   async function getCommunityData(url) {
@@ -25,6 +32,10 @@ const Community = () => {
     setCommunityData(data);
   }
 
+  const handleClick = () => {
+    dispatch(toggleIsHidden(isHidden));
+  };
+
   return (
     <section className="container community">
       <div className="community__container">
@@ -38,11 +49,7 @@ const Community = () => {
             when we get feedback from our users.
           </p>
         </div>
-        <button
-          className="community__btn"
-          type="button"
-          onClick={() => setIsHidden(!isHidden)}
-        >
+        <button className="community__btn" type="button" onClick={handleClick}>
           {isHidden ? 'Hide' : 'Show'} section
         </button>
       </div>
