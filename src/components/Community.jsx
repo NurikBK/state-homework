@@ -5,25 +5,28 @@ const Community = () => {
   const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
-    const url = 'http://localhost:3000/community';
-    getCommunityData(url);
-  }, []);
+    const fetchCommunityData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/community', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-  async function getCommunityData(url) {
-    const res = await fetch(url, {
-      method: 'GET',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-    });
-    const data = await res.json();
-    setCommunityData(data);
-  }
+        if (!res.ok) {
+          throw new Error('Unable to fetch community data');
+        }
+
+        const data = await res.json();
+        setCommunityData(data);
+      } catch (error) {
+        alert(error);
+      }
+    };
+
+    fetchCommunityData();
+  }, []);
 
   return (
     <section className="container community">
@@ -49,19 +52,21 @@ const Community = () => {
 
       {isHidden && (
         <div className="wrapper">
-          {communityData.map((item) => (
-            <div className="card" key={item.id}>
-              <img className="avatar" src={item.avatar} alt="avatar" />
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolor.
-              </p>
-              <small className="uppercase">
-                {item.firstName} {item.lastName}
-              </small>
-              <p>{item.position}</p>
-            </div>
-          ))}
+          {communityData.map(
+            ({ id, avatar, firstName, lastName, position }) => (
+              <div className="card" key={id}>
+                <img className="avatar" src={avatar} alt="avatar" />
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolor.
+                </p>
+                <small className="uppercase">
+                  {firstName} {lastName}
+                </small>
+                <p>{position}</p>
+              </div>
+            )
+          )}
         </div>
       )}
     </section>

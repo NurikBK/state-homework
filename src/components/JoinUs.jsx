@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
-
 import { subscribe, unsubscribe } from '../api/api';
 
 const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
-  const [isSubcribed, setIsSubcribed] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-
   const [email, setEmail] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubscribe = async (action) => {
+    setIsDisabled(true); // Disable the button to prevent multiple clicks
 
-    setIsDisabled((prevState) => !prevState);
-
-    if (!isSubcribed) {
-      try {
+    try {
+      if (action === 'subscribe') {
         await subscribe(email);
-        setIsSubcribed((prevState) => !prevState);
-        setIsDisabled((prevState) => !prevState);
-      } catch (error) {
-        alert(error);
-      }
-    } else {
-      try {
+        setIsSubscribed(true);
+      } else if (action === 'unsubscribe') {
         await unsubscribe(email);
-        setIsSubcribed((prevState) => !prevState);
-        setIsDisabled((prevState) => !prevState);
-      } catch (error) {
-        alert(error);
+        setIsSubscribed(false);
       }
+    } catch (error) {
+      alert(error);
     }
+
+    setIsDisabled(false); // Enable the button again
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSubscribe(isSubscribed ? 'unsubscribe' : 'subscribe');
   };
 
   return (
@@ -39,7 +36,7 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
         Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
       <form onSubmit={handleSubmit}>
-        {!isSubcribed && (
+        {!isSubscribed && (
           <input
             type="email"
             placeholder="Email"
@@ -50,10 +47,10 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
         <button
           className="btn"
           type="submit"
-          style={isDisabled ? { opacity: '0.5' } : { opacity: '1' }}
+          style={{ opacity: isDisabled ? '0.5' : '1' }}
           disabled={isDisabled}
         >
-          {!isSubcribed ? buttonTitle : 'Unsubcribe'}
+          {isSubscribed ? 'Unsubscribe' : buttonTitle}
         </button>
       </form>
     </section>
