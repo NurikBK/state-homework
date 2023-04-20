@@ -11,16 +11,20 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setIsDisabled(!isDisabled);
+    setIsDisabled((prevState) => !prevState);
 
     if (!isSubcribed) {
-      await subscribe(email);
-      setIsSubcribed(!isSubcribed);
-      setIsDisabled(!isDisabled);
+      try {
+        await subscribe(email);
+        setIsSubcribed((prevState) => !prevState);
+        setIsDisabled((prevState) => !prevState);
+      } catch (error) {
+        alert(error);
+      }
     } else {
       await unsubscribe(email);
-      setIsSubcribed(!isSubcribed);
-      setIsDisabled(!isDisabled);
+      setIsSubcribed((prevState) => !prevState);
+      setIsDisabled((prevState) => !prevState);
     }
   };
 
@@ -30,7 +34,7 @@ const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
       <p className="subheading">
         Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
-      <form onSubmit={handleSubmit} className="wrapper">
+      <form onSubmit={handleSubmit}>
         {!isSubcribed && (
           <input
             // change type
