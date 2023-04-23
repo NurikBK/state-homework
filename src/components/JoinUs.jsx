@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { subscribe, unsubscribe } from '../api/api';
+import { setIsSubscribed, setIsDisabled } from '../features/joinUs/joinUsSlice';
 
 const JoinUs = ({ title = 'Join Our Program', buttonTitle = 'Subscribe' }) => {
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false);
+  const dispatch = useDispatch();
+  const { isSubscribed, isDisabled } = useSelector((state) => state.joinUs);
   const [email, setEmail] = useState('');
 
   const handleSubscribe = async (action) => {
-    setIsDisabled(true); // Disable the button to prevent multiple clicks
-
+    dispatch(setIsDisabled(true)); 
     try {
       if (action === 'subscribe') {
         await subscribe(email);
-        setIsSubscribed(true);
+        dispatch(setIsSubscribed(true));
       } else if (action === 'unsubscribe') {
         await unsubscribe(email);
-        setIsSubscribed(false);
+        dispatch(setIsSubscribed(false));
       }
     } catch (error) {
       alert(error);
     }
 
-    setIsDisabled(false); // Enable the button again
+    dispatch(setIsDisabled(false));
   };
 
   const handleSubmit = (e) => {
