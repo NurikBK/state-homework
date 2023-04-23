@@ -21,8 +21,12 @@ export const fetchCommunityData = createAsyncThunk(
 
 const communitySlice = createSlice({
   name: 'community',
-  initialState: { data: [], status: 'idle', error: null },
-  reducers: {},
+  initialState: { isHidden: false, data: [], status: 'idle', error: null },
+  reducers: {
+    setIsHidden: (state, action) => {
+      state.isHidden = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCommunityData.pending, (state) => {
@@ -39,4 +43,7 @@ const communitySlice = createSlice({
   },
 });
 
+export const { setIsHidden } = communitySlice.actions;
+
 export default communitySlice.reducer;
+

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
-import { fetchCommunityData } from '../features/community/communitySlice';
+import {
+  fetchCommunityData,
+  setIsHidden,
+} from '../features/community/communitySlice';
 
 const Community = () => {
-  const [isHidden, setIsHidden] = useState(false);
   const dispatch = useDispatch();
+  const { isHidden } = useSelector((state) => state.community);
   const communityData = useSelector((state) => state.community.data);
   const communityStatus = useSelector((state) => state.community.status);
   const communityError = useSelector((state) => state.community.error);
@@ -38,7 +41,7 @@ const Community = () => {
         <button
           className="community__btn"
           type="button"
-          onClick={() => setIsHidden(!isHidden)}
+          onClick={() => dispatch(setIsHidden(!isHidden))}
         >
           {isHidden ? 'Hide' : 'Show'} section
         </button>
