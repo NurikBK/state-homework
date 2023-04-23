@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import communityReducer from './communitySlice';
-
+import communityReducer from '../features/community/communitySlice';
 
 const rootReducer = combineReducers({
   community: communityReducer,

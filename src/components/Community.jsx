@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
-import { fetchCommunityData } from '../app/communitySlice';
+import { fetchCommunityData } from '../features/community/communitySlice';
 
 const Community = () => {
   const [isHidden, setIsHidden] = useState(false);
