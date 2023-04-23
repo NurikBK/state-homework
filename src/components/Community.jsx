@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Card from './Card';
 
 const Community = () => {
   const [communityData, setCommunityData] = useState([]);
@@ -52,21 +53,9 @@ const Community = () => {
 
       {isHidden && (
         <div className="wrapper">
-          {communityData.map(
-            ({ id, avatar, firstName, lastName, position }) => (
-              <div className="card" key={id}>
-                <img className="avatar" src={avatar} alt="avatar" />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolor.
-                </p>
-                <small className="uppercase">
-                  {firstName} {lastName}
-                </small>
-                <p>{position}</p>
-              </div>
-            )
-          )}
+          {communityData?.map((item) => (
+            <Card item={item} key={item.id} />
+          ))}
         </div>
       )}
     </section>
