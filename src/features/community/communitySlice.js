@@ -1,3 +1,4 @@
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchCommunityData = createAsyncThunk(
@@ -46,4 +47,3 @@ const communitySlice = createSlice({
 export const { setIsHidden } = communitySlice.actions;
 
 export default communitySlice.reducer;
-
