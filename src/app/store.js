@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import communityReducer from '../features/community/communitySlice';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
-export default configureStore({
-  reducer: {
-    community: communityReducer,
-  },
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [thunk],
 });
+
+export default store;

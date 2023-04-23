@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Card from './Card';
+import { fetchCommunityData } from '../app/communitySlice';
 
 const Community = () => {
-  const [communityData, setCommunityData] = useState([]);
   const [isHidden, setIsHidden] = useState(false);
+  const dispatch = useDispatch();
+  const communityData = useSelector((state) => state.community.data);
+  const communityStatus = useSelector((state) => state.community.status);
+  const communityError = useSelector((state) => state.community.error);
 
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        const res = await fetch('http://localhost:3000/community', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+    dispatch(fetchCommunityData());
+  }, [dispatch]);
 
-        if (!res.ok) {
-          throw new Error('Unable to fetch community data');
-        }
+  if (communityStatus === 'loading') {
+    return <div>Loading...</div>;
+  }
 
-        const data = await res.json();
-        setCommunityData(data);
-      } catch (error) {
-        alert(error);
-      }
-    };
-
-    fetchCommunityData();
-  }, []);
+  if (communityStatus === 'failed') {
+    return <div>{communityError}</div>;
+  }
 
   return (
     <section className="container community">
