@@ -6,7 +6,7 @@ import {
   setIsHidden,
 } from '../features/community/communitySlice';
 
-const Community = () => {
+const CommunityPage = () => {
   const dispatch = useDispatch();
   const { isHidden } = useSelector((state) => state.community);
   const communityData = useSelector((state) => state.community.data);
@@ -58,4 +58,4 @@ const Community = () => {
   );
 };
 
-export default Community;
+export default CommunityPage;
