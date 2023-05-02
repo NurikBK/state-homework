@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from './Card';
+import Card from '../components/Card';
 import {
   fetchCommunityData,
   setIsHidden,
@@ -26,7 +26,7 @@ const CommunityPage = () => {
   }
 
   return (
-    <section className="container community">
+    <main className="container community">
       <div className="community__container">
         <div>
           <h2>
@@ -54,7 +54,7 @@ const CommunityPage = () => {
           ))}
         </div>
       )}
-    </section>
+    </main>
   );
 };
 
