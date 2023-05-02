@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchCommunityData = createAsyncThunk(
@@ -22,7 +21,7 @@ export const fetchCommunityData = createAsyncThunk(
 
 const communitySlice = createSlice({
   name: 'community',
-  initialState: { isHidden: false, data: [], status: 'idle', error: null },
+  initialState: { isHidden: true, data: [], status: 'idle', error: null },
   reducers: {
     setIsHidden: (state, action) => {
       state.isHidden = action.payload;
