@@ -1,23 +1,23 @@
 import './App.css';
-import Article from './components/Article';
-import Community from './components/Community';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import JoinUs from './components/JoinUs';
-import LearnMore from './components/LearnMore';
+import Home from './components/Home';
+
+import { Routes, Route } from 'react-router-dom';
+import NotFoundPage from './components/NotFoundPage';
+import UserPage from './components/UserPage';
+import CommunityPage from './components/CommunityPage';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <main>
-        <Hero />
-        <Article />
-        <Community />
-        <LearnMore />
-        <JoinUs />
-      </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/community" element={<CommunityPage />} />
+        <Route path="/community/:userId" element={<UserPage />} />
+        <Route path="/community/*" element={<NotFoundPage />} />
+      </Routes>
       <Footer />
     </div>
   );
