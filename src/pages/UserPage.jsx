@@ -14,7 +14,7 @@ const UserPage = () => {
   }
 
   return (
-    <main className="container">
+    <section className="container">
       <div className="card--community">
         <img className="avatar" src={user?.avatar} alt="avatar" />
         <p>
@@ -26,7 +26,7 @@ const UserPage = () => {
         </small>
         <p>{user?.position}</p>
       </div>
-    </main>
+    </section>
   );
 };
 

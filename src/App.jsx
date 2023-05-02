@@ -1,24 +1,23 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import CommunityPage from './pages/CommunityPage';
 import UserPage from './pages/UserPage';
 import NotFoundPage from './pages/NotFoundPage';
 import HomePage from './pages/HomePage';
+import Layout from './components/Layout';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/community" element={<CommunityPage />} />
-        <Route path="/community/:userId" element={<UserPage />} />
-        <Route path="/community/*" element={<NotFoundPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="community" element={<CommunityPage />} />
+          <Route path="community/:userId" element={<UserPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
-      <Footer />
-    </div>
+    </>
   );
 }
 

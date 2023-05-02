@@ -26,7 +26,7 @@ const CommunityPage = () => {
   }
 
   return (
-    <main className="container community">
+    <section className="container community">
       <div className="community__container">
         <div>
           <h2>
@@ -54,7 +54,7 @@ const CommunityPage = () => {
           ))}
         </div>
       )}
-    </main>
+    </section>
   );
 };
 

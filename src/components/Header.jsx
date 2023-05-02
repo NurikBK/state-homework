@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="header">
       <h4>
-        <a href="/">Project</a>
+        <Link to="/">Logo</Link>
       </h4>
       <button className="menu-btn"></button>
       <nav className="navigation">
@@ -14,13 +14,13 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#learn-more ">About us</a>
+            <Link to="/">About Us</Link>
           </li>
           <li>
             <Link to="/community">Community</Link>
           </li>
           <li>
-            <a href="#footer">Contact</a>
+            <Link to="/">Contact</Link>
           </li>
         </ul>
       </nav>

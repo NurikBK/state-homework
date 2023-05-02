@@ -6,12 +6,12 @@ import Article from '../components/Article';
 
 const HomePage = () => {
   return (
-    <main>
+    <>
       <Hero />
       <Article />
       <LearnMore />
       <JoinUs />
-    </main>
+    </>
   );
 };
 
