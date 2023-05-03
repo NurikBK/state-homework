@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
+  const setActive = ({ isActive }) => (isActive ? 'link active' : 'link');
   return (
     <header className="header">
       <h4>
@@ -11,16 +12,24 @@ const Header = () => {
       <nav className="navigation">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" className={setActive}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/">About Us</Link>
+            <NavLink to="/about" className={setActive}>
+              About Us
+            </NavLink>
           </li>
           <li>
-            <Link to="/community">Community</Link>
+            <NavLink to="/community" className={setActive}>
+              Community
+            </NavLink>
           </li>
           <li>
-            <Link to="/">Contact</Link>
+            <NavLink to="/contact" className={setActive}>
+              Contact
+            </NavLink>
           </li>
         </ul>
       </nav>

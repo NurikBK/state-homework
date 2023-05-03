@@ -357,14 +357,14 @@ a {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-  }
-  ul {
     gap: 2em;
   }
+
   ul li {
     list-style: none;
   }
-  ul li:hover {
+  .link:hover,
+  .link.active  {
     border-bottom: 2px solid #fff;
   }
   ul li a {
